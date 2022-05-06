@@ -51,15 +51,9 @@ int startGame(int dice1,int dice2){
     if(dice1>dice2){
         return 1;                       //return which player gonna start 
     }
-
     else 
         return 2;
-
 }
-
-
-
-
 
 
 int main (){
@@ -196,8 +190,6 @@ for(i=0;i<15;i++){          //these long code for filling array for first time
 }
 
 
-
-
     printMap(map);
     printf("To start to game,players should dice and decide who is going to start first according to it...\n");
 
@@ -279,8 +271,6 @@ do{
 
 
 
-
-
         for(i=0;i<dice1;i++){                   // going as many as dice number 
             count1++;
             if(p1x>0 && p1x<28 && p1y==1){
@@ -314,10 +304,6 @@ do{
                 done1=1;
         }
         
-        
-
-
-
 
         for(i=0;i<dice2;i++){                           // going as many as dice number 
             count2++;   
@@ -359,10 +345,10 @@ do{
         }
         else{                                                   //penalty situation
 
-            printf("\033[33m");                                 //going two back
+            printf("\033[33m");                                 
             printf("Penalty for player 1\n");
             printf("\033[0m");
-            if(p1x>0 && p1x<28 && p1y==1){          
+            if(p1x>0 && p1x<28 && p1y==1){                      //going two back
                 t=map[p1y][p1x];
                 map[p1y][p1x]=' ';
                 p1x=p1x-2;
@@ -388,7 +374,15 @@ do{
             }
 
         }
-        if(map[3][10]!=(char)50&&map[3][18]!=(char)50&&map[5][26]!=(char)50&&map[10][26]!=(char)50&&map[11][10]!=(char)50&&map[11][18]!=(char)50){// controls if racer on the X 
+        if(map[1][14]!=(char)49&&map[7][28]!=(char)49&&map[13][14]!=(char)49){          // controls if racer on the X 
+
+            map[1][14]='X';
+            map[7][28]='X';
+            map[13][14]='X';
+        }
+        
+        
+        if(map[3][10]!=(char)50&&map[3][18]!=(char)50&&map[5][26]!=(char)50&&map[10][26]!=(char)50&&map[11][10]!=(char)50&&map[11][18]!=(char)50){	// controls if racer on the X 
 
             map[3][10]='X';
             map[3][18]='X'; 
@@ -399,9 +393,9 @@ do{
         }
         else{                                                        //penalty situation
             printf("\033[34m");
-            printf("Penalty for player 2\n");                           //going two back
+            printf("Penalty for player 2\n");                           
             printf("\033[0m");
-            if(p2x>2 && p2x<26 && p2y==3){                                      
+            if(p2x>2 && p2x<26 && p2y==3){                                      //going two back
                 t=map[p2y][p2x];
                 map[p2y][p2x]=' ';
                 p2x=p2x-2;
@@ -426,18 +420,28 @@ do{
                 map[p2y][p2x]=t;
             }
         }
+        if(map[3][10]!=(char)50&&map[3][18]!=(char)50&&map[5][26]!=(char)50&&map[10][26]!=(char)50&&map[11][10]!=(char)50&&map[11][18]!=(char)50){	// controls if racer on the X 
+
+            map[3][10]='X';
+            map[3][18]='X'; 
+            map[5][26]='X';
+            map[10][26]='X';
+            map[11][10]='X';
+            map[11][18]='X';
+        }
         
-        if(map[2][1]!=(char)49){                            
+        
+        if(map[2][1]!=(char)49){                            //finish lines
 
             map[2][1]='_';
         }   
-        if(map[4][3]!=(char)50){
+        if(map[4][3]!=(char)50){                            //finish lines
 
             map[4][3]='_';
         }   
 
         printMap(map);
-        if(done1==1){
+        if(done1==1&& !(start==2&&done2==1)){
             printf("\033[0;33m");
             printf("\n*** PLAYER 1 WON THE GAME ***\n\n");              //if player 1 wins exit loop
             printMap(map);
@@ -446,16 +450,13 @@ do{
         }
         if(done2==1){
             printf("\033[34m");
-            printf("\n*** PLAYER 2 WON THE GAME ***\n\n");                      //if player 2 wins exit loop
+            printf("\n*** PLAYER 2 WON THE GAME ***\n\n");              //if player 2 wins exit loop
             printMap(map);
             code=1;
             printf("\033[0m");
         }
 
     }while(code==0);
-
-
-
 
 
 
